@@ -36,22 +36,25 @@ export default function HomeScreen() {
 
             {/* Populares */}
             <MovieHorizontalList 
-                movies={popularQuery.data ?? []}
+                movies={popularQuery.data?.pages.flat() ?? []}
                 title='Populares'
-                className='mb-5'
+                className='mb-2'
+                loadNextPage={popularQuery.fetchNextPage}
             />
 
             {/* Mejor Valorados */}
             <MovieHorizontalList 
-                movies={topRatedrQuery.data ?? []}
+                movies={topRatedrQuery.data?.pages.flat() ?? []}
                 title='Mejor Valoradas'
-                className='mb-5'
+                className='mb-2'
+                loadNextPage={topRatedrQuery.fetchNextPage}
             />
 
             {/* Proximas */}
             <MovieHorizontalList 
-                movies={upComingrQuery.data ?? []}
+                movies={upComingrQuery.data?.pages.flat() ?? []}
                 title='Próximente en cines'
+                loadNextPage={upComingrQuery.fetchNextPage}
             />
         </ScrollView>
     )
